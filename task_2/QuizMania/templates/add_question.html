@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %} Add Question {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+  <form action="/add_question/" method="POST"> {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-info">Submit</button>
+  </form>
+  <br>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Category</th>
+        <th>Quiz</th>
+        <th>Delete</th>
+        <th>Go to Question</th>
+      </tr>
+    </thead>
+    {% for question in questions %}
+    <tr>
+      <td>{{question.content}}</td>
+      <td>{{question.category}}</td>
+      <td>{{question.quiz}}</td>
+      <td><a href="/delete_question/{{question.id}}/" class="btn btn-danger">Delete</a></td>
+      {% if question.category == 'MCQ' %}
+      <td><a href="/add_options/{{question.id}}/">question link</a></td>
+      {% elif question.category == 'Numerical' %}
+      <td><a href="/add_integer/{{question.id}}/">question link</a></td>
+      {% elif question.category == 'T/F' %}
+      <td><a href="/add_boolean/{{question.id}}/">question link</a></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

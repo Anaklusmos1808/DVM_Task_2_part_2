@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Leaderboard {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Points</th>
+          <th>Quiz</th>
+        </tr>
+      </thead>
+{% for leader in leaders %}
+<tr>
+    <td>{{leader.user}}</td>
+    <td>{{leader.score}}</td>
+    <td>{{leader.quiz}}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

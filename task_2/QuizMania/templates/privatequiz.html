@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} Private Quiz {% endblock %}
+
+{% block body %}
+<h1>This is a private quiz enter pin to access</h1>
+<form class="row g-4" method="POST" action='/4/'>{% csrf_token %}
+<div class="col-md-12">
+    <label for="inputname" class="form-label" style="font-weight: bold;"><i>
+            Pin: </i></label>
+    <input type="password" placeholder="Enter Pin" style="text-align: center;"
+        class="form-control" id="input_pin" name="input_pin" required>
+</div>
+
+<button type="submit" class="btn btn-info">Submit</button>
+</form>
+{% endblock %}
